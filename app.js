@@ -1,9 +1,9 @@
 const acorn = require('acorn'),
       fs = require('fs'),
+      readline = require('readline'),
       beautify = require('js-beautify').js_beautify;
 
 const readFile = (path) => fs.readFileSync(path, 'utf8');
-
 
 function requireComplianceLocation(fileData) {
     let [requireIdentifierPresent,
@@ -431,9 +431,19 @@ function convertFileTo(fileData, moduleType) {
     }
 }
 
-const fileData = readFile("./common.js");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-console.log(convertFileTo(fileData, "ES6"))
+rl.question('Filename? ', (file) => {
+    const fileData = readFile(file);
 
+    rl.question('Type? ', (moduleType) => {
+	const newFile = convertFileTo(fileData, moduleType);
+	fs.writeFile(file, newFile);
 
+	rl.close();
+    });
+});
 
