@@ -7,3 +7,6 @@ imported via ES6s features or attributes on CommonJS requires will cause the fil
 
 If a system is using RequireJS, however, this script __should__ work. Make sure to backup and commit every couple of files
 when using this.
+
+(PS: This is a throwaway script that I am posting here in case anyone ever needs something similar, so if you go looking
+through the source code, remember that.)
